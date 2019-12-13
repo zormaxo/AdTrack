@@ -81,6 +81,7 @@ namespace AdTrackForm.Report
             get.Execute();
             companyReportList = get.List;
             PopulateCompanyList(companyReportList);
+            Common.WriteDtToExcel(companyReportList, "Firma Raporu", "CompanyName", "AdCount");
         }
 
         private void FillYearList()
@@ -101,6 +102,9 @@ namespace AdTrackForm.Report
             get.Execute();
             companyDetaiList = get.List;
             sumList = get.SumList;
+            DataTable table1 = Common.ConvertToDatatable(companyDetaiList, "MagazineName", "Date", "PageDesc");
+            DataTable table2 = Common.ConvertToDatatable(sumList, "MagazineName", "AdCount");
+            Common.WriteDsToExcel("Detay Rapor", table1, table2);
             PopulateDetailList(companyDetaiList);
             PopulateSumList(sumList);
         }
