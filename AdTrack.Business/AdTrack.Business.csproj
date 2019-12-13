@@ -45,6 +45,7 @@
     <Compile Include="OCompanyReport.cs" />
     <Compile Include="OCompany.cs" />
     <Compile Include="OAdvertisement.cs" />
+    <Compile Include="OMagazineReport.cs" />
     <Compile Include="OMagazineDate.cs" />
     <Compile Include="OMagazine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

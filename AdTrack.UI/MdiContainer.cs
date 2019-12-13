@@ -12,6 +12,7 @@ namespace AdTrack.UI
         public MagazineDateForm MagazineDateForm { get; set; }
         public AdManForm AdManForm { get; set; }
         public CompanyReportForm CompanyReportForm { get; set; }
+        public MagazineReportForm MagazineReportForm { get; set; }
         public AboutForm AboutForm { get; set; }
 
         public MdiContainer()
@@ -82,6 +83,19 @@ namespace AdTrack.UI
             else
             {
                 CompanyReportForm.Activate();
+            }
+        }
+
+        private void MenuMagazineReport_Click(object sender, EventArgs e)
+        {
+            if (MagazineReportForm?.IsDisposed != false)
+            {
+                MagazineReportForm = new MagazineReportForm { MdiParent = this };
+                MagazineReportForm.Show();
+            }
+            else
+            {
+                MagazineReportForm.Activate();
             }
         }
 

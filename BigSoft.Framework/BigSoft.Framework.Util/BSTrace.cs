@@ -9,7 +9,7 @@ namespace BigSoft.Framework.Util
         private const string DEFAULT_PATH = "C:\\OmerLog\\";
         private const string TRACE_FILE_NAME = "Log";
         private static string _fileName;
-        private  static string _traceLine;
+        private static string _traceLine;
 
         private static void Prepare(string msg, string callingMethod, TraceLvl traceLvl)
         {
@@ -18,8 +18,8 @@ namespace BigSoft.Framework.Util
             if (!Directory.Exists(logPath))
                 Directory.CreateDirectory(logPath);
 
-            if (logPath != string.Empty && !logPath.EndsWith("\\"))
-                logPath = logPath + "\\";
+            if (!string.IsNullOrEmpty(logPath) && !logPath.EndsWith("\\"))
+                logPath += "\\";
 
             _fileName = logPath + TRACE_FILE_NAME + '_' + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             _traceLine = String.Format("[{0}] [{1}] [{2}] {3}", DateTime.Now.ToString("HH:mm:ss.fff"), traceLvl, callingMethod, msg);
@@ -50,7 +50,6 @@ namespace BigSoft.Framework.Util
             using (StreamWriter sw = new StreamWriter(_fileName, true))
             {
                 sw.WriteLine(_traceLine);
-                sw.Close();
             }
         }
 
@@ -64,7 +63,6 @@ namespace BigSoft.Framework.Util
             using (StreamWriter sw = new StreamWriter(_fileName, true))
             {
                 sw.Write(_traceLine);
-                sw.Close();
             }
         }
     }

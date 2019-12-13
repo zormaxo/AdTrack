@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvertisementRepository.cs" />
+    <Compile Include="MagazineReportRepository.cs" />
     <Compile Include="CompanyReportRepository.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="MagazineDateRepository.cs" />

@@ -44,6 +44,7 @@
     <Compile Include="Advertisement.cs" />
     <Compile Include="CompanyReport.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="MagazineReport.cs" />
     <Compile Include="MagazineDate.cs" />
     <Compile Include="Magazine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

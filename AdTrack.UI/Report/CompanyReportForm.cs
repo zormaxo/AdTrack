@@ -71,7 +71,6 @@ namespace AdTrackForm.Report
         private void GetFormReady()
         {
             BsCommon.ClearControls(this);
-            bsStandartToolStrip1.DisableButtons();
             FillYearList();
         }
 

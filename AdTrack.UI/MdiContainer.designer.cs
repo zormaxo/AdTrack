@@ -38,8 +38,9 @@ namespace AdTrack.UI
             this.menuAd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCompanyReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.okTabBrowser = new BigSoft.Framework.Controls.BsTabBrowser();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.okTabBrowser = new BigSoft.Framework.Controls.BsTabBrowser();
+            this.menuMagazineReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +99,8 @@ namespace AdTrack.UI
             // tsmiReport
             // 
             this.tsmiReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuCompanyReport});
+            this.menuCompanyReport,
+            this.menuMagazineReport});
             this.tsmiReport.Name = "tsmiReport";
             this.tsmiReport.Size = new System.Drawing.Size(50, 20);
             this.tsmiReport.Text = "&Rapor";
@@ -110,6 +112,13 @@ namespace AdTrack.UI
             this.menuCompanyReport.Text = "Firma";
             this.menuCompanyReport.Click += new System.EventHandler(this.MenuCompanyReport_Click);
             // 
+            // menuAbout
+            // 
+            this.menuAbout.Name = "menuAbout";
+            this.menuAbout.Size = new System.Drawing.Size(69, 20);
+            this.menuAbout.Text = "&Hakkında";
+            this.menuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
+            // 
             // okTabBrowser
             // 
             this.okTabBrowser.Dock = System.Windows.Forms.DockStyle.Top;
@@ -119,12 +128,12 @@ namespace AdTrack.UI
             this.okTabBrowser.Size = new System.Drawing.Size(995, 22);
             this.okTabBrowser.TabIndex = 21;
             // 
-            // menuAbout
+            // menuMagazineReport
             // 
-            this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(69, 20);
-            this.menuAbout.Text = "&Hakkında";
-            this.menuAbout.Click += new System.EventHandler(this.MenuAbout_Click);
+            this.menuMagazineReport.Name = "menuMagazineReport";
+            this.menuMagazineReport.Size = new System.Drawing.Size(180, 22);
+            this.menuMagazineReport.Text = "Dergi";
+            this.menuMagazineReport.Click += new System.EventHandler(this.MenuMagazineReport_Click);
             // 
             // MdiContainer
             // 
@@ -161,5 +170,6 @@ namespace AdTrack.UI
         private System.Windows.Forms.ToolStripMenuItem menuCreateMag;
         private System.Windows.Forms.ToolStripMenuItem menuCreateDate;
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
+        private System.Windows.Forms.ToolStripMenuItem menuMagazineReport;
     }
 }
