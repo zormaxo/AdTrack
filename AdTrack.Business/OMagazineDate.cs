@@ -18,7 +18,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineDateRepository rep = new MagazineDateRepository();
+            MagazineDateRepository rep = new MagazineDateRepository(OpConn);
             ObjList = rep.GetList(obj);
         }
     }
@@ -34,7 +34,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineDateRepository rep = new MagazineDateRepository();
+            MagazineDateRepository rep = new MagazineDateRepository(OpConn);
             string query = string.Format("INSERT INTO MagazineDate (MagazineId, Date) VALUES ({0}, '{1}')",
                 obj.MagazineId, obj.Date.ToString("yyyy-MM-dd"));
             rep.QueryDb(query);
@@ -52,7 +52,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineRepository rep = new MagazineRepository();
+            MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("DELETE FROM MagazineDate WHERE MagazineId = {0} AND Date = '{1}'",
                 obj.MagazineId, obj.Date.ToString("yyyy-MM-dd"));
             rep.QueryDb(query);

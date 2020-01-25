@@ -18,12 +18,14 @@ namespace AdTrackForm.Report
         private List<CompanyReport> companyDetaiList;
         private List<CompanyReport> sumList;
         private int selectedCompanyId;
-        private string selectedYear;
+        private DateTime startDate;
+        private DateTime endDate;
+        private List<int> statusList;
 
         public CompanyReportForm()
         {
             InitializeComponent();
-            lvwCompany.GenerateListView(3);
+            lvwCompany.GenerateListView(4);
             lvwDetails.GenerateListView(5);
             lvwSum.GenerateListView(3);
         }
@@ -35,14 +37,6 @@ namespace AdTrackForm.Report
             GetFormReady();
         }
 
-        private void CbxYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selectedYear = cbxYear.SelectedItem.ToString();
-            lvwDetails.Items.Clear();
-            lvwSum.Items.Clear();
-            FillCompanyList(selectedYear);
-        }
-
         private void LvwCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwCompany.SelectedItems.Count < 1)
@@ -50,7 +44,7 @@ namespace AdTrackForm.Report
                 lvwDetails.Items.Clear();
                 return;
             }
-            selectedCompanyId = Convert.ToInt32(lvwCompany.SelectedItems[0].SubItems[3].Text);
+            selectedCompanyId = Convert.ToInt32(lvwCompany.SelectedItems[0].SubItems[4].Text);
             FillDetailList();
         }
 
@@ -63,6 +57,7 @@ namespace AdTrackForm.Report
 
         private void CompanyReportForm_Load(object sender, EventArgs e)
         {
+            dtpEnd.Value = DateTime.Now;
             GetFormReady();
         }
 
@@ -70,34 +65,38 @@ namespace AdTrackForm.Report
 
         private void GetFormReady()
         {
+            statusList = new List<int>();
             BsCommon.ClearControls(this);
-            FillYearList();
+            lvwDetails.Items.Clear();
+            lvwSum.Items.Clear();
+            startDate = dtpStart.Value;
+            endDate = dtpEnd.Value;
+            PopulateStatusList();
+            FillCompanyList();
         }
 
-        private void FillCompanyList(string selectedYear)
+        private void PopulateStatusList()
         {
-            OCompanyReportGet get = new OCompanyReportGet(selectedYear);
+            if (chkGenel.Checked)
+                statusList.Add(1);
+            if (chkFuar.Checked)
+                statusList.Add(2);
+            if (chkVermez.Checked)
+                statusList.Add(3);
+        }
+
+        private void FillCompanyList()
+        {
+            OCompanyReportGet get = new OCompanyReportGet(startDate, endDate, statusList);
             get.Execute();
             companyReportList = get.List;
             PopulateCompanyList(companyReportList);
             Common.WriteDtToExcel(companyReportList, "Firma Raporu", "CompanyName", "AdCount");
         }
 
-        private void FillYearList()
-        {
-            List<int> years = Common.GetYears();
-            cbxYear.Items.Clear();
-            cbxYear.Items.Add("Hepsi");
-
-            foreach (int item in years)
-                cbxYear.Items.Add(item);
-
-            cbxYear.SelectedIndex = 0;
-        }
-
         private void FillDetailList()
         {
-            OCompanyDetailGet get = new OCompanyDetailGet(selectedCompanyId, selectedYear);
+            OCompanyDetailGet get = new OCompanyDetailGet(selectedCompanyId, startDate, endDate, statusList);
             get.Execute();
             companyDetaiList = get.List;
             sumList = get.SumList;
@@ -139,7 +138,7 @@ namespace AdTrackForm.Report
             lvwCompany.Items.Clear();
             for (int i = 0; i < list.Count; i++)
             {
-                string[] row = { (i + 1).ToString(), list[i].CompanyName, list[i].AdCount.ToString(), list[i].CompanyId.ToString() };
+                string[] row = { (i + 1).ToString(), list[i].CompanyName, list[i].AdCount.ToString(), list[i].StatusName, list[i].CompanyId.ToString() };
                 ListViewItem item = new ListViewItem(row);
                 lvwCompany.Items.Add(item);
             }

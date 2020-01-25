@@ -67,6 +67,10 @@ namespace BigSoft.Framework.Util
                 {
                     box.Clear();
                 }
+                if (control is MaskedTextBox mbox)
+                {
+                    mbox.Clear();
+                }
                 if (control is ListView view)
                 {
                     view.Items.Clear();

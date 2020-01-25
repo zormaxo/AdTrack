@@ -6,8 +6,7 @@ namespace AdTrack.Data
 {
     public class SqLiteBaseRepository
     {
-        protected SqLiteBaseRepository()
-        { }
+        public SQLiteConnection Conn { get; set; } = SimpleDbConnection();
 
         public static string DbFile
         {
@@ -21,12 +20,8 @@ namespace AdTrack.Data
 
         public void QueryDb(string query)
         {
-            using (var cnn = SimpleDbConnection())
-            {
-                cnn.Open();
-                cnn.Query<int>("PRAGMA foreign_keys = ON;");
-                cnn.Query<int>(query);
-            }
+            Conn.Query<int>("PRAGMA foreign_keys = ON;");
+            Conn.Query<int>(query);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            AdvertisementRepository rep = new AdvertisementRepository();
+            AdvertisementRepository rep = new AdvertisementRepository(OpConn);
             ObjList = rep.GetList(obj);
         }
     }
@@ -36,7 +36,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineDateRepository rep = new MagazineDateRepository();
+            MagazineDateRepository rep = new MagazineDateRepository(OpConn);
             string delete = string.Format("DELETE FROM Advertisement WHERE MagazineDateId = {0}", dateId);
             rep.QueryDb(delete);
 

@@ -1,30 +1,32 @@
 ﻿using AdTrack.Data.Model;
 using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AdTrack.Data
 {
     public class CompanyReportRepository : SqLiteBaseRepository
     {
-        public List<CompanyReport> GetList(string selectedYear)
+        public CompanyReportRepository(SQLiteConnection cnn)
         {
-            string query;
-            if (selectedYear == "Hepsi")
-            {
-                query = "SELECT co.CompanyName, co.CompanyId, COUNT(*) AdCount   FROM Advertisement ad " +
-                  " JOIN Company co ON ad.CompanyId = co.CompanyId" +
-                  " GROUP BY co.CompanyName" +
-                  " ORDER by AdCount desc; ";
-            }
-            else
-            {
-                query = string.Format("SELECT co.CompanyName, co.CompanyId, COUNT(*) AdCount   FROM Advertisement ad" +
-                    " JOIN Company co ON ad.CompanyId = co.CompanyId" +
-                    " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
-                    " WHERE strftime('%Y', md.Date) = '{0}'" +
-                    " GROUP BY co.CompanyName" +
-                    " ORDER by AdCount desc; ", selectedYear);
-            }
+            Conn = cnn;
+        }
+
+        public List<CompanyReport> GetList(DateTime start, DateTime end, List<int> statusList)
+        {
+            string sdate = start.ToString("yyyy-MM-dd");
+            string edate = end.ToString("yyyy-MM-dd");
+            string statuses = string.Join(",", statusList);
+
+            string query = string.Format("SELECT co.CompanyName, co.CompanyId, COUNT(*) AdCount, st.StatusName FROM Advertisement ad" +
+             " JOIN Company co ON ad.CompanyId = co.CompanyId" +
+             " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
+             " JOIN Status st ON co.Status = st.StatusId " +
+             " WHERE md.Date BETWEEN '{0}' AND '{1}'" +
+             " AND st.StatusId IN ({2})" +
+             " GROUP BY co.CompanyName" +
+             " ORDER by AdCount desc; ", sdate, edate, statuses);
 
             using (var cnn = SimpleDbConnection())
             {
@@ -33,29 +35,21 @@ namespace AdTrack.Data
             }
         }
 
-        public List<CompanyReport> GetCompanyDetailList(int companyId, string selectedYear)
+        public List<CompanyReport> GetCompanyDetailList(int companyId, DateTime start, DateTime end, List<int> statusList)
         {
-            string query;
-            if (selectedYear == "Hepsi")
-            {
-                query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
-                    " FROM Advertisement ad" +
-                    " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
-                    " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
-                    " JOIN Page pa ON pa.PageId = ad.PageId" +
-                    " WHERE ad.CompanyId = {0} ORDER BY md.Date DESC", companyId);
-            }
-            else
-            {
-                query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
+            string sdate = start.ToString("yyyy-MM-dd");
+            string edate = end.ToString("yyyy-MM-dd");
+            string statuses = string.Join(",", statusList);
+
+            string query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
                     " FROM Advertisement ad" +
                     " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
                     " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
                     " JOIN Page pa ON pa.PageId = ad.PageId" +
                     " WHERE ad.CompanyId = {0} " +
-                    " AND strftime('%Y', md.Date) = '{1}'" +
-                    " ORDER BY md.Date DESC", companyId, selectedYear);
-            }
+                    " AND md.Date BETWEEN '{1}' AND '{2}'" +
+                                 " AND st.StatusId IN ({3})" +
+                    " ORDER BY md.Date DESC", companyId, sdate, edate, statuses);
 
             using (var cnn = SimpleDbConnection())
             {
@@ -64,28 +58,20 @@ namespace AdTrack.Data
             }
         }
 
-        public List<CompanyReport> GetSumList(int companyId, string selectedYear)
+        public List<CompanyReport> GetSumList(int companyId, DateTime start, DateTime end, List<int> statusList)
         {
-            string query;
-            if (selectedYear == "Hepsi")
-            {
-                query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
-                    " JOIN Advertisement ad ON md.MagazineDateId = ad.MagazineDateId" +
-                    " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
-                    " WHERE ad.CompanyId = {0}" +
-                    " GROUP BY ma.MagazineId" +
-                    " ORDER BY COUNT(*) DESC", companyId);
-            }
-            else
-            {
-                query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
+            string sdate = start.ToString("yyyy-MM-dd");
+            string edate = end.ToString("yyyy-MM-dd");
+            string statuses = string.Join(",", statusList);
+
+            string query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
                    " JOIN Advertisement ad ON md.MagazineDateId = ad.MagazineDateId" +
                    " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
                    " WHERE ad.CompanyId = {0}" +
-                   " AND strftime('%Y', md.Date) = '{1}'" +
+                   " AND md.Date BETWEEN '{1}' AND '{2}'" +
+                                " AND st.StatusId IN ({3})" +
                    " GROUP BY ma.MagazineId" +
-                   " ORDER BY COUNT(*) DESC", companyId, selectedYear);
-            }
+                   " ORDER BY COUNT(*) DESC", companyId, sdate, edate, statuses);
 
             using (var cnn = SimpleDbConnection())
             {

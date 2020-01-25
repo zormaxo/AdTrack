@@ -13,7 +13,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineRepository rep = new MagazineRepository();
+            MagazineRepository rep = new MagazineRepository(OpConn);
             MagazineList = rep.GetList();
         }
     }
@@ -29,7 +29,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineRepository rep = new MagazineRepository();
+            MagazineRepository rep = new MagazineRepository(OpConn);
             if (string.IsNullOrEmpty(magazineName))
                 throw new BsException("Boş girilemez", OpType.UserError);
 
@@ -53,7 +53,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineRepository rep = new MagazineRepository();
+            MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("DELETE FROM Magazine WHERE MagazineId = {0}", magazineId);
             rep.QueryDb(query);
         }
@@ -70,7 +70,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineRepository rep = new MagazineRepository();
+            MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("UPDATE Magazine SET MagazineName = '{0}' WHERE MagazineId = {1}", magazine.MagazineName, magazine.MagazineId);
             rep.QueryDb(query);
         }

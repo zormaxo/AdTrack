@@ -1,11 +1,17 @@
 ﻿using AdTrack.Data.Model;
 using Dapper;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AdTrack.Data
 {
     public class MagazineReportRepository : SqLiteBaseRepository
     {
+        public MagazineReportRepository(SQLiteConnection cnn)
+        {
+            Conn = cnn;
+        }
+
         public List<MagazineReport> GetList(string magazineId)
         {
             string query = string.Format("SELECT co.CompanyName, COUNT(*) AdCount FROM Advertisement ad" +

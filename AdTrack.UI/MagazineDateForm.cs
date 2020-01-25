@@ -70,7 +70,7 @@ namespace AdTrackForm
             else
             {
                 bsStandartToolStrip1.EnableSave();
-                bsStandartToolStrip1.DisableButtons();
+                bsStandartToolStrip1.DisableUpdateDelete();
             }
         }
 
@@ -78,11 +78,11 @@ namespace AdTrackForm
         {
             if (lvwExist.SelectedItems.Count < 1)
             {
-                bsStandartToolStrip1.DisableButtons();
+                bsStandartToolStrip1.DisableUpdateDelete();
             }
             else
             {
-                bsStandartToolStrip1.EnableButtons();
+                bsStandartToolStrip1.EnableUpdateDelete();
                 bsStandartToolStrip1.DisableSave();
             }
         }
@@ -96,7 +96,7 @@ namespace AdTrackForm
                 return;
             }
             bsStandartToolStrip1.EnableSave();
-            bsStandartToolStrip1.DisableButtons();
+            bsStandartToolStrip1.DisableUpdateDelete();
             addedMonth = Convert.ToInt32(lvwMonth.SelectedItems[0].SubItems[2].Text);
         }
 
@@ -104,11 +104,11 @@ namespace AdTrackForm
         {
             if (lvwExist.SelectedItems.Count < 1)
             {
-                bsStandartToolStrip1.DisableButtons();
+                bsStandartToolStrip1.DisableUpdateDelete();
                 deletedMonth = 0;
                 return;
             }
-            bsStandartToolStrip1.EnableButtons();
+            bsStandartToolStrip1.EnableUpdateDelete();
             bsStandartToolStrip1.DisableSave();
             deletedMonth = Convert.ToInt32(lvwExist.SelectedItems[0].SubItems[2].Text);
         }
@@ -154,7 +154,7 @@ namespace AdTrackForm
         private void GetFormReady()
         {
             BsCommon.ClearControls(this);
-            bsStandartToolStrip1.DisableButtons();
+            bsStandartToolStrip1.DisableUpdateDelete();
             bsStandartToolStrip1.DisableSave();
             FillMagazineList();
             FillYearList();
@@ -189,6 +189,7 @@ namespace AdTrackForm
         private void FillYearList()
         {
             lvwYear.Items.Clear();
+            lvwYear.Items.Add(new ListViewItem(new string[] { "2020" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2019" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2018" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2017" }));

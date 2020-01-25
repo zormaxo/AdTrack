@@ -18,7 +18,7 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            MagazineReportRepository rep = new MagazineReportRepository();
+            MagazineReportRepository rep = new MagazineReportRepository(OpConn);
             List = rep.GetList(magazineId);
         }
     }

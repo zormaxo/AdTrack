@@ -1,11 +1,17 @@
 ﻿using AdTrack.Data.Model;
 using Dapper;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AdTrack.Data
 {
     public class MagazineDateRepository : SqLiteBaseRepository
     {
+        public MagazineDateRepository(SQLiteConnection cnn)
+        {
+            Conn = cnn;
+        }
+
         public List<MagazineDate> GetList(MagazineDate obj)
         {
             string query = string.Format("SELECT * FROM MagazineDate " +

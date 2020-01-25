@@ -24,7 +24,7 @@ namespace AdTrack.UI
 
         private void BsStandartToolStrip1_OkGetButtonClicked(object sender, EventArgs e)
         {
-            bsStandartToolStrip1.DisableButtons();
+            bsStandartToolStrip1.DisableUpdateDelete();
             SearchList();
         }
 
@@ -84,13 +84,13 @@ namespace AdTrack.UI
         {
             if (lvwMagazine.SelectedItems.Count < 1)
             {
-                bsStandartToolStrip1.DisableButtons();
+                bsStandartToolStrip1.DisableUpdateDelete();
                 return;
             }
             selectedMagazine = (Magazine)lvwMagazine.SelectedItems[0].Tag;
             txtMaName.Text = selectedMagazine.MagazineName;
 
-            bsStandartToolStrip1.EnableButtons();
+            bsStandartToolStrip1.EnableUpdateDelete();
         }
 
         private void TxtMaName_TextChanged(object sender, EventArgs e)
@@ -114,7 +114,7 @@ namespace AdTrack.UI
         private void GetFormReady()
         {
             BsCommon.ClearControls(this);
-            bsStandartToolStrip1.DisableButtons();
+            bsStandartToolStrip1.DisableUpdateDelete();
             FillMagazineList();
         }
 

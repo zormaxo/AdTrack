@@ -300,7 +300,7 @@ namespace AdTrackForm
         private void GetFormReady()
         {
             BsCommon.ClearControls(this);
-            bsStandartToolStrip1.DisableButtons();
+            bsStandartToolStrip1.DisableUpdateDelete();
             bsStandartToolStrip1.DisableSave();
             FillMagazineList();
             FillYearList();
@@ -335,6 +335,7 @@ namespace AdTrackForm
 
         private void FillYearList()
         {
+            lvwYear.Items.Add(new ListViewItem(new string[] { "2020" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2019" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2018" }));
             lvwYear.Items.Add(new ListViewItem(new string[] { "2017" }));

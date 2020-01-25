@@ -1,11 +1,17 @@
 ﻿using AdTrack.Data.Model;
 using Dapper;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace AdTrack.Data
 {
     public class MagazineRepository : SqLiteBaseRepository
     {
+        public MagazineRepository(SQLiteConnection cnn)
+        {
+            Conn = cnn;
+        }
+
         public List<Magazine> GetList()
         {
             using (var cnn = SimpleDbConnection())

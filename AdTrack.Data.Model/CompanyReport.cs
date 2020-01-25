@@ -10,5 +10,6 @@ namespace AdTrack.Data.Model
         public string MagazineName { get; set; }
         public string PageDesc { get; set; }
         public DateTime Date { get; set; }
+        public string StatusName { get; set; }
     }
 }

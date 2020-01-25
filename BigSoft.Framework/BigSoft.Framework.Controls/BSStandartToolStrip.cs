@@ -254,13 +254,13 @@ namespace BigSoft.Framework.Controls
 
         #endregion Button Enabled Status
 
-        public void EnableButtons()
+        public void EnableUpdateDelete()
         {
             tsbUpdate.Enabled = true;
             tsbDelete.Enabled = true;
         }
 
-        public void DisableButtons()
+        public void DisableUpdateDelete()
         {
             tsbUpdate.Enabled = false;
             tsbDelete.Enabled = false;
