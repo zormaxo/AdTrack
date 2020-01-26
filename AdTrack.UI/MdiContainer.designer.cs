@@ -38,9 +38,9 @@ namespace AdTrack.UI
             this.menuAd = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCompanyReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMagazineReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.okTabBrowser = new BigSoft.Framework.Controls.BsTabBrowser();
-            this.menuMagazineReport = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,9 +108,16 @@ namespace AdTrack.UI
             // menuCompanyReport
             // 
             this.menuCompanyReport.Name = "menuCompanyReport";
-            this.menuCompanyReport.Size = new System.Drawing.Size(180, 22);
+            this.menuCompanyReport.Size = new System.Drawing.Size(104, 22);
             this.menuCompanyReport.Text = "Firma";
             this.menuCompanyReport.Click += new System.EventHandler(this.MenuCompanyReport_Click);
+            // 
+            // menuMagazineReport
+            // 
+            this.menuMagazineReport.Name = "menuMagazineReport";
+            this.menuMagazineReport.Size = new System.Drawing.Size(104, 22);
+            this.menuMagazineReport.Text = "Dergi";
+            this.menuMagazineReport.Click += new System.EventHandler(this.MenuMagazineReport_Click);
             // 
             // menuAbout
             // 
@@ -128,13 +135,6 @@ namespace AdTrack.UI
             this.okTabBrowser.Size = new System.Drawing.Size(995, 22);
             this.okTabBrowser.TabIndex = 21;
             // 
-            // menuMagazineReport
-            // 
-            this.menuMagazineReport.Name = "menuMagazineReport";
-            this.menuMagazineReport.Size = new System.Drawing.Size(180, 22);
-            this.menuMagazineReport.Text = "Dergi";
-            this.menuMagazineReport.Click += new System.EventHandler(this.MenuMagazineReport_Click);
-            // 
             // MdiContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,7 +149,7 @@ namespace AdTrack.UI
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MdiContainer";
-            this.Text = "Medya Takip";
+            this.Text = "Medya Takip v2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
