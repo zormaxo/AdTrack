@@ -45,15 +45,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.rdoK1 = new System.Windows.Forms.RadioButton();
+            this.rdoV1 = new System.Windows.Forms.RadioButton();
+            this.rdoD1 = new System.Windows.Forms.RadioButton();
+            this.rdoD2 = new System.Windows.Forms.RadioButton();
+            this.rdoV2 = new System.Windows.Forms.RadioButton();
+            this.rdoK2 = new System.Windows.Forms.RadioButton();
+            this.rdoD3 = new System.Windows.Forms.RadioButton();
+            this.rdoV3 = new System.Windows.Forms.RadioButton();
+            this.rdoK3 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -116,18 +116,18 @@
             // 
             // txtExp
             // 
-            this.txtExp.Location = new System.Drawing.Point(8, 19);
+            this.txtExp.Location = new System.Drawing.Point(426, 118);
             this.txtExp.Multiline = true;
             this.txtExp.Name = "txtExp";
-            this.txtExp.Size = new System.Drawing.Size(466, 73);
+            this.txtExp.Size = new System.Drawing.Size(415, 68);
             this.txtExp.TabIndex = 13;
             // 
             // txtAddress1
             // 
-            this.txtAddress1.Location = new System.Drawing.Point(426, 113);
+            this.txtAddress1.Location = new System.Drawing.Point(8, 19);
             this.txtAddress1.Multiline = true;
             this.txtAddress1.Name = "txtAddress1";
-            this.txtAddress1.Size = new System.Drawing.Size(413, 68);
+            this.txtAddress1.Size = new System.Drawing.Size(468, 75);
             this.txtAddress1.TabIndex = 14;
             // 
             // txtAddress2
@@ -206,111 +206,114 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "Telefon 3";
             // 
-            // radioButton1
+            // rdoK1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(480, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(90, 17);
-            this.radioButton1.TabIndex = 27;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Kuyumcukent";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdoK1.AutoSize = true;
+            this.rdoK1.Location = new System.Drawing.Point(480, 20);
+            this.rdoK1.Name = "rdoK1";
+            this.rdoK1.Size = new System.Drawing.Size(90, 17);
+            this.rdoK1.TabIndex = 27;
+            this.rdoK1.TabStop = true;
+            this.rdoK1.Text = "Kuyumcukent";
+            this.rdoK1.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdoV1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(480, 43);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(77, 17);
-            this.radioButton2.TabIndex = 28;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Vizyonpark";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdoV1.AutoSize = true;
+            this.rdoV1.Location = new System.Drawing.Point(480, 43);
+            this.rdoV1.Name = "rdoV1";
+            this.rdoV1.Size = new System.Drawing.Size(77, 17);
+            this.rdoV1.TabIndex = 28;
+            this.rdoV1.TabStop = true;
+            this.rdoV1.Text = "Vizyonpark";
+            this.rdoV1.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rdoD1
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(480, 66);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(50, 17);
-            this.radioButton3.TabIndex = 29;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Diğer";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rdoD1.AutoSize = true;
+            this.rdoD1.Checked = true;
+            this.rdoD1.Location = new System.Drawing.Point(480, 66);
+            this.rdoD1.Name = "rdoD1";
+            this.rdoD1.Size = new System.Drawing.Size(50, 17);
+            this.rdoD1.TabIndex = 29;
+            this.rdoD1.TabStop = true;
+            this.rdoD1.Text = "Diğer";
+            this.rdoD1.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rdoD2
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(482, 67);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(50, 17);
-            this.radioButton4.TabIndex = 32;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Diğer";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rdoD2.AutoSize = true;
+            this.rdoD2.Checked = true;
+            this.rdoD2.Location = new System.Drawing.Point(482, 67);
+            this.rdoD2.Name = "rdoD2";
+            this.rdoD2.Size = new System.Drawing.Size(50, 17);
+            this.rdoD2.TabIndex = 32;
+            this.rdoD2.TabStop = true;
+            this.rdoD2.Text = "Diğer";
+            this.rdoD2.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // rdoV2
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(482, 44);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(77, 17);
-            this.radioButton5.TabIndex = 31;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Vizyonpark";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.rdoV2.AutoSize = true;
+            this.rdoV2.Location = new System.Drawing.Point(482, 44);
+            this.rdoV2.Name = "rdoV2";
+            this.rdoV2.Size = new System.Drawing.Size(77, 17);
+            this.rdoV2.TabIndex = 31;
+            this.rdoV2.TabStop = true;
+            this.rdoV2.Text = "Vizyonpark";
+            this.rdoV2.UseVisualStyleBackColor = true;
             // 
-            // radioButton6
+            // rdoK2
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(482, 21);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(90, 17);
-            this.radioButton6.TabIndex = 30;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Kuyumcukent";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.rdoK2.AutoSize = true;
+            this.rdoK2.Location = new System.Drawing.Point(482, 21);
+            this.rdoK2.Name = "rdoK2";
+            this.rdoK2.Size = new System.Drawing.Size(90, 17);
+            this.rdoK2.TabIndex = 30;
+            this.rdoK2.TabStop = true;
+            this.rdoK2.Text = "Kuyumcukent";
+            this.rdoK2.UseVisualStyleBackColor = true;
             // 
-            // radioButton7
+            // rdoD3
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(480, 65);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(50, 17);
-            this.radioButton7.TabIndex = 35;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "Diğer";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.rdoD3.AutoSize = true;
+            this.rdoD3.Checked = true;
+            this.rdoD3.Location = new System.Drawing.Point(480, 65);
+            this.rdoD3.Name = "rdoD3";
+            this.rdoD3.Size = new System.Drawing.Size(50, 17);
+            this.rdoD3.TabIndex = 35;
+            this.rdoD3.TabStop = true;
+            this.rdoD3.Text = "Diğer";
+            this.rdoD3.UseVisualStyleBackColor = true;
             // 
-            // radioButton8
+            // rdoV3
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(480, 42);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(77, 17);
-            this.radioButton8.TabIndex = 34;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Vizyonpark";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.rdoV3.AutoSize = true;
+            this.rdoV3.Location = new System.Drawing.Point(480, 42);
+            this.rdoV3.Name = "rdoV3";
+            this.rdoV3.Size = new System.Drawing.Size(77, 17);
+            this.rdoV3.TabIndex = 34;
+            this.rdoV3.TabStop = true;
+            this.rdoV3.Text = "Vizyonpark";
+            this.rdoV3.UseVisualStyleBackColor = true;
             // 
-            // radioButton9
+            // rdoK3
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(480, 19);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(90, 17);
-            this.radioButton9.TabIndex = 33;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "Kuyumcukent";
-            this.radioButton9.UseVisualStyleBackColor = true;
+            this.rdoK3.AutoSize = true;
+            this.rdoK3.Location = new System.Drawing.Point(480, 19);
+            this.rdoK3.Name = "rdoK3";
+            this.rdoK3.Size = new System.Drawing.Size(90, 17);
+            this.rdoK3.TabIndex = 33;
+            this.rdoK3.TabStop = true;
+            this.rdoK3.Text = "Kuyumcukent";
+            this.rdoK3.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtAddress3);
-            this.groupBox1.Controls.Add(this.radioButton7);
-            this.groupBox1.Controls.Add(this.radioButton8);
-            this.groupBox1.Controls.Add(this.radioButton9);
+            this.groupBox1.Controls.Add(this.rdoD3);
+            this.groupBox1.Controls.Add(this.rdoV3);
+            this.groupBox1.Controls.Add(this.rdoK3);
             this.groupBox1.Location = new System.Drawing.Point(365, 409);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(571, 107);
@@ -321,9 +324,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtAddress2);
-            this.groupBox2.Controls.Add(this.radioButton6);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Controls.Add(this.rdoK2);
+            this.groupBox2.Controls.Add(this.rdoD2);
+            this.groupBox2.Controls.Add(this.rdoV2);
             this.groupBox2.Location = new System.Drawing.Point(365, 295);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(571, 108);
@@ -333,10 +336,10 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.txtExp);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton3);
+            this.groupBox3.Controls.Add(this.rdoK1);
+            this.groupBox3.Controls.Add(this.rdoV1);
+            this.groupBox3.Controls.Add(this.rdoD1);
+            this.groupBox3.Controls.Add(this.txtAddress1);
             this.groupBox3.Location = new System.Drawing.Point(365, 189);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(571, 100);
@@ -349,6 +352,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 528);
+            this.Controls.Add(this.txtExp);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -359,7 +363,6 @@
             this.Controls.Add(this.txtTel2);
             this.Controls.Add(this.txtTel1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtAddress1);
             this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.lvwCompany);
@@ -397,15 +400,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton9;
+        private System.Windows.Forms.RadioButton rdoK1;
+        private System.Windows.Forms.RadioButton rdoV1;
+        private System.Windows.Forms.RadioButton rdoD1;
+        private System.Windows.Forms.RadioButton rdoD2;
+        private System.Windows.Forms.RadioButton rdoV2;
+        private System.Windows.Forms.RadioButton rdoK2;
+        private System.Windows.Forms.RadioButton rdoD3;
+        private System.Windows.Forms.RadioButton rdoV3;
+        private System.Windows.Forms.RadioButton rdoK3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;

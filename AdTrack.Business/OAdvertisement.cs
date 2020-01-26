@@ -38,13 +38,13 @@ namespace AdTrack.Business
         {
             MagazineDateRepository rep = new MagazineDateRepository(OpConn);
             string delete = string.Format("DELETE FROM Advertisement WHERE MagazineDateId = {0}", dateId);
-            rep.QueryDb(delete);
+            rep.BsExecute(delete);
 
             foreach (Advertisement item in list)
             {
                 string query = string.Format("INSERT INTO Advertisement (MagazineDateId, CompanyId, PageId) VALUES ({0}, {1}, {2})",
                     dateId, item.CompanyId, item.PageId);
-                rep.QueryDb(query);
+                rep.BsExecute(query);
             }
         }
     }

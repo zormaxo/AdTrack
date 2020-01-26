@@ -7,9 +7,8 @@ namespace AdTrack.Data
 {
     public class MagazineRepository : SqLiteBaseRepository
     {
-        public MagazineRepository(SQLiteConnection cnn)
+        public MagazineRepository(SQLiteConnection cnn) : base(cnn)
         {
-            Conn = cnn;
         }
 
         public List<Magazine> GetList()

@@ -9,8 +9,9 @@ namespace AdTrack.Business
 {
     public abstract class AdOperations
     {
-        public BsNewResult Result { get; set; } = new BsNewResult();
-        public SQLiteConnection OpConn { get; set; } = SqLiteBaseRepository.SimpleDbConnection();
+        protected BsNewResult Result { get; set; } = new BsNewResult();
+        protected SqLiteBaseRepository BaseRepo { get; set; }
+        protected SQLiteConnection OpConn { get; set; } = SqLiteBaseRepository.SimpleDbConnection();
 
         public BsNewResult Execute()
         {
@@ -18,6 +19,7 @@ namespace AdTrack.Business
             {
                 using (OpConn)
                 {
+                    BaseRepo = new SqLiteBaseRepository(OpConn);
                     OpConn.Open();
                     SQLiteTransaction tran = OpConn.BeginTransaction();
 

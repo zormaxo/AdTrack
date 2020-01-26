@@ -38,7 +38,7 @@ namespace AdTrack.Business
                 throw new BsException("Zaten mevcut kayıt", OpType.UserError);
 
             string query = string.Format("INSERT INTO Magazine (MagazineName) VALUES ('{0}')", magazineName);
-            rep.QueryDb(query);
+            rep.BsExecute(query);
         }
     }
 
@@ -55,7 +55,7 @@ namespace AdTrack.Business
         {
             MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("DELETE FROM Magazine WHERE MagazineId = {0}", magazineId);
-            rep.QueryDb(query);
+            rep.BsExecute(query);
         }
     }
 
@@ -72,7 +72,7 @@ namespace AdTrack.Business
         {
             MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("UPDATE Magazine SET MagazineName = '{0}' WHERE MagazineId = {1}", magazine.MagazineName, magazine.MagazineId);
-            rep.QueryDb(query);
+            rep.BsExecute(query);
         }
     }
 }

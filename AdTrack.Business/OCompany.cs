@@ -2,6 +2,7 @@
 using AdTrack.Data.Model;
 using BigSoft.Framework.Util;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 
 namespace AdTrack.Business
@@ -13,8 +14,8 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            CompanyRepository rep = new CompanyRepository(OpConn);
-            CompanyList = rep.GetList();
+            CompanyRepository repo = new CompanyRepository(OpConn);
+            CompanyList = repo.GetList();
         }
     }
 
@@ -29,28 +30,16 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            CompanyRepository rep = new CompanyRepository(OpConn);
-            if (string.IsNullOrEmpty(Obj.CompanyName))
-                throw new BsException("Boş girilemez", OpType.UserError);
+            OCompanyUtil.CheckDuplicateCompany(Obj, OpConn);
 
-            List<Company> companyList = rep.GetList();
-            if (companyList.Any(mag => mag.CompanyName == Obj.CompanyName))
-                throw new BsException("Zaten mevcut kayıt", OpType.UserError);
-
+            //Firma kayıt
             string query = string.Format("INSERT INTO Company (CompanyName, Status, Explanation) VALUES ('{0}',{1},'{2}');",
-                Obj.CompanyName, Obj.StatusId, Obj.Explanation);
-            rep.QueryDb(query);
+                                         Obj.CompanyName, Obj.StatusId, Obj.Explanation);
+            BaseRepo.BsExecute(query);
+            int companyId = (int)OpConn.LastInsertRowId;
 
-            long id = OpConn.LastInsertRowId;
-            //Adres defterine kaydet
-            query = string.Format("INSERT INTO Address (CompanyId, Address1,  Address2, Address3) VALUES ('{0}','{1}','{2}','{3}')",
-                id, Obj.Address1, Obj.Address2, Obj.Address3);
-            rep.QueryDb(query);
-
-            //Telefon defterine kaydet
-            query = string.Format("INSERT INTO Telephone (CompanyId, Telephone1, Telephone2, Telephone3) VALUES ('{0}','{1}','{2}','{3}')",
-                id, Obj.Telephone1, Obj.Telephone2, Obj.Telephone3);
-            rep.QueryDb(query);
+            //Adres ve Telefon kayıtları
+            OCompanyUtil.SaveAddressAndTel(Obj, OpConn, companyId);
         }
     }
 
@@ -65,30 +54,22 @@ namespace AdTrack.Business
 
         protected override void DoJob()
         {
-            CompanyRepository rep = new CompanyRepository(OpConn);
+            OCompanyUtil.CheckDuplicateCompany(Obj, OpConn);
 
-            string query = string.Format("UPDATE Company SET CompanyName = '{0}', " +
-                " Status = '{1}', Explanation = '{2}' WHERE CompanyId = {3}",
-                Obj.CompanyName, Obj.StatusId, Obj.Explanation, Obj.CompanyId);
-            rep.QueryDb(query);
+            string query = "UPDATE Company SET CompanyName = @CompanyName, Status = @Status, Explanation = @Explanation " +
+                                 "WHERE CompanyId = @CompanyId";
+            BaseRepo.BsExecute(query, new { Obj.CompanyName, Status = Obj.StatusId, Obj.Explanation, Obj.CompanyId });
 
             //Adresleri sil
             query = string.Format("DELETE FROM Address WHERE CompanyId = {0}", Obj.CompanyId);
-            rep.QueryDb(query);
+            BaseRepo.BsExecute(query);
 
             //Telefonları sil
             query = string.Format("DELETE FROM Telephone WHERE CompanyId = {0}", Obj.CompanyId);
-            rep.QueryDb(query);
+            BaseRepo.BsExecute(query);
 
-            //Adres defterine kaydet
-            query = string.Format("INSERT INTO Address (CompanyId, Address1,  Address2, Address3) VALUES ('{0}','{1}','{2}','{3}')",
-                Obj.CompanyId, Obj.Address1, Obj.Address2, Obj.Address3);
-            rep.QueryDb(query);
-
-            //Telefon defterine kaydet
-            query = string.Format("INSERT INTO Telephone (CompanyId, Telephone1, Telephone2, Telephone3) VALUES ('{0}','{1}','{2}','{3}')",
-                Obj.CompanyId, Obj.Telephone1, Obj.Telephone2, Obj.Telephone3);
-            rep.QueryDb(query);
+            //Adres ve Telefon kayıtları
+            OCompanyUtil.SaveAddressAndTel(Obj, OpConn, Obj.CompanyId);
         }
     }
 
@@ -105,7 +86,47 @@ namespace AdTrack.Business
         {
             CompanyRepository rep = new CompanyRepository(OpConn);
             string query = string.Format("DELETE FROM Company WHERE CompanyId = {0}", id);
-            rep.QueryDb(query);
+            rep.BsExecute(query);
+        }
+    }
+
+    public static class OCompanyUtil
+    {
+        public static void CheckDuplicateCompany(Company obj, SQLiteConnection opConn)
+        {
+            CompanyRepository companyRepo = new CompanyRepository(opConn);
+
+            if (string.IsNullOrEmpty(obj.CompanyName))
+                throw new BsException("Boş girilemez", OpType.UserError);
+
+            if (obj.CompanyName == obj.NewCompanyName)
+                return;
+
+            List<Company> companyList = companyRepo.GetList();
+            if (companyList.Any(mag => mag.CompanyName == obj.CompanyName))
+                throw new BsException("Zaten mevcut kayıt", OpType.UserError);
+        }
+
+        public static void SaveAddressAndTel(Company obj, SQLiteConnection opConn, int companyId)
+        {
+            AddressRepository addressRepo = new AddressRepository(opConn);
+            TelephoneRepository telRepo = new TelephoneRepository(opConn);
+
+            //Adres defterine kaydet
+            if (!string.IsNullOrEmpty(obj.Address1.AddressText.Trim()))
+                addressRepo.SaveAddress(obj.Address1, companyId);
+            if (!string.IsNullOrEmpty(obj.Address2.AddressText.Trim()))
+                addressRepo.SaveAddress(obj.Address2, companyId);
+            if (!string.IsNullOrEmpty(obj.Address3.AddressText.Trim()))
+                addressRepo.SaveAddress(obj.Address3, companyId);
+
+            //Telefon defterine kaydet
+            if (!string.IsNullOrEmpty(obj.Telephone1.Trim()))
+                telRepo.SaveTelephone(obj.Telephone1, companyId);
+            if (!string.IsNullOrEmpty(obj.Telephone2.Trim()))
+                telRepo.SaveTelephone(obj.Telephone2, companyId);
+            if (!string.IsNullOrEmpty(obj.Telephone3.Trim()))
+                telRepo.SaveTelephone(obj.Telephone3, companyId);
         }
     }
 }

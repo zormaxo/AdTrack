@@ -37,7 +37,7 @@ namespace AdTrack.Business
             MagazineDateRepository rep = new MagazineDateRepository(OpConn);
             string query = string.Format("INSERT INTO MagazineDate (MagazineId, Date) VALUES ({0}, '{1}')",
                 obj.MagazineId, obj.Date.ToString("yyyy-MM-dd"));
-            rep.QueryDb(query);
+            rep.BsExecute(query);
         }
     }
 
@@ -55,7 +55,7 @@ namespace AdTrack.Business
             MagazineRepository rep = new MagazineRepository(OpConn);
             string query = string.Format("DELETE FROM MagazineDate WHERE MagazineId = {0} AND Date = '{1}'",
                 obj.MagazineId, obj.Date.ToString("yyyy-MM-dd"));
-            rep.QueryDb(query);
+            rep.BsExecute(query);
         }
     }
 }

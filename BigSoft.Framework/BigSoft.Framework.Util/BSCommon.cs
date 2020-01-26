@@ -75,6 +75,16 @@ namespace BigSoft.Framework.Util
                 {
                     view.Items.Clear();
                 }
+                if (control is GroupBox gbox)
+                {
+                    foreach (Control control1 in gbox.Controls)
+                    {
+                        if (control1 is TextBox box1)
+                        {
+                            box1.Clear();
+                        }
+                    }
+                }
             }
         }
     }

@@ -50,7 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TelephoneRepository.cs" />
     <Compile Include="AdvertisementRepository.cs" />
+    <Compile Include="AddressRepository.cs" />
     <Compile Include="StatusRepository.cs" />
     <Compile Include="MagazineReportRepository.cs" />
     <Compile Include="CompanyReportRepository.cs" />

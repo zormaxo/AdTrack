@@ -47,9 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdOperations.cs" />
+    <Compile Include="OTelephone.cs" />
     <Compile Include="OCompanyReport.cs" />
     <Compile Include="OCompany.cs" />
     <Compile Include="OAdvertisement.cs" />
+    <Compile Include="OAddress.cs" />
     <Compile Include="OStatus.cs" />
     <Compile Include="OMagazineReport.cs" />
     <Compile Include="OMagazineDate.cs" />

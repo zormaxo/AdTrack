@@ -1,27 +1,35 @@
 ﻿using Dapper;
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace AdTrack.Data
 {
     public class SqLiteBaseRepository
     {
-        public SQLiteConnection Conn { get; set; } = SimpleDbConnection();
+        protected readonly SQLiteConnection BaseCnn;
 
-        public static string DbFile
+        public SqLiteBaseRepository(SQLiteConnection cnn)
         {
-            get { return Environment.CurrentDirectory + "\\AdTrackDb.sqlite"; }
+            BaseCnn = cnn;
         }
 
         public static SQLiteConnection SimpleDbConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            string dbFile = Environment.CurrentDirectory + "\\AdTrackDb.sqlite";
+            return new SQLiteConnection("Data Source=" + dbFile);
         }
 
-        public void QueryDb(string query)
+        public List<T> BsQuery<T>(string query, object param = null)
         {
-            Conn.Query<int>("PRAGMA foreign_keys = ON;");
-            Conn.Query<int>(query);
+            BaseCnn.Execute("PRAGMA foreign_keys = ON;");
+            return BaseCnn.Query<T>(query, param).AsList();
+        }
+
+        public void BsExecute(string query, object param = null)
+        {
+            BaseCnn.Execute("PRAGMA foreign_keys = ON;");
+            BaseCnn.Execute(query, param);
         }
     }
 }

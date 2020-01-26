@@ -8,9 +8,8 @@ namespace AdTrack.Data
 {
     public class CompanyReportRepository : SqLiteBaseRepository
     {
-        public CompanyReportRepository(SQLiteConnection cnn)
+        public CompanyReportRepository(SQLiteConnection cnn) : base(cnn)
         {
-            Conn = cnn;
         }
 
         public List<CompanyReport> GetList(DateTime start, DateTime end, List<int> statusList)

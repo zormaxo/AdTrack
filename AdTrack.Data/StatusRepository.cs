@@ -7,9 +7,8 @@ namespace AdTrack.Data
 {
     public class StatusRepository : SqLiteBaseRepository
     {
-        public StatusRepository(SQLiteConnection cnn)
+        public StatusRepository(SQLiteConnection cnn) : base(cnn)
         {
-            Conn = cnn;
         }
 
         public List<Status> GetList()
