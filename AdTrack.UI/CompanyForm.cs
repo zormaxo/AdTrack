@@ -77,6 +77,13 @@ namespace AdTrackForm
                 return;
             }
 
+            txtAddress1.Text = string.Empty;
+            txtAddress2.Text = string.Empty;
+            txtAddress3.Text = string.Empty;
+            txtTel1.Text = string.Empty;
+            txtTel2.Text = string.Empty;
+            txtTel3.Text = string.Empty;
+
             _selectedItem = (Company)lvwCompany.SelectedItems[0].Tag;
             txtCoName.Text = _selectedItem.CompanyName;
             cmbStatus.SelectedIndex = _selectedItem.StatusId;
@@ -142,13 +149,6 @@ namespace AdTrackForm
                 }
             }
 
-            if (address.AddressList.Count == 0)
-            {
-                txtAddress1.Text = string.Empty;
-                txtAddress2.Text = string.Empty;
-                txtAddress3.Text = string.Empty;
-            }
-
             OTelephoneGet tel = new OTelephoneGet(_selectedItem.CompanyId);
             tel.Execute();
 
@@ -158,13 +158,6 @@ namespace AdTrackForm
                 txtTel2.Text = tel.TelephoneList[1].TelNumber;
             if (tel.TelephoneList.Count > 2)
                 txtTel3.Text = tel.TelephoneList[2].TelNumber;
-
-            if (tel.TelephoneList.Count == 0)
-            {
-                txtTel1.Text = string.Empty;
-                txtTel2.Text = string.Empty;
-                txtTel3.Text = string.Empty;
-            }
 
             bsStandartToolStrip1.EnableUpdateDelete();
         }

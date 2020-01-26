@@ -22,6 +22,11 @@ namespace BigSoft.Framework.Util
             }
         }
 
+        public static void ShowSuccess(string message)
+        {
+            MessageBox.Show(message, "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public static void ShowError(string message)
         {
             MessageBox.Show(message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);

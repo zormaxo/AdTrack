@@ -38,10 +38,11 @@
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkFair = new System.Windows.Forms.CheckBox();
             this.chkGenel = new System.Windows.Forms.CheckBox();
             this.chkFuar = new System.Windows.Forms.CheckBox();
             this.chkVermez = new System.Windows.Forms.CheckBox();
+            this.btnAddress = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtFilter
@@ -138,15 +139,15 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "Bitiş";
             // 
-            // checkBox1
+            // chkFair
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(334, 41);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(123, 17);
-            this.checkBox1.TabIndex = 23;
-            this.checkBox1.Text = "Sadece Fuar Sayıları";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkFair.AutoSize = true;
+            this.chkFair.Location = new System.Drawing.Point(334, 41);
+            this.chkFair.Name = "chkFair";
+            this.chkFair.Size = new System.Drawing.Size(123, 17);
+            this.chkFair.TabIndex = 23;
+            this.chkFair.Text = "Sadece Fuar Sayıları";
+            this.chkFair.UseVisualStyleBackColor = true;
             // 
             // chkGenel
             // 
@@ -184,15 +185,26 @@
             this.chkVermez.Text = "Vermez";
             this.chkVermez.UseVisualStyleBackColor = true;
             // 
+            // btnAddress
+            // 
+            this.btnAddress.Location = new System.Drawing.Point(710, 26);
+            this.btnAddress.Name = "btnAddress";
+            this.btnAddress.Size = new System.Drawing.Size(98, 23);
+            this.btnAddress.TabIndex = 28;
+            this.btnAddress.Text = "Adresleri Çıkar";
+            this.btnAddress.UseVisualStyleBackColor = true;
+            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
+            // 
             // CompanyReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 561);
+            this.Controls.Add(this.btnAddress);
             this.Controls.Add(this.chkVermez);
             this.Controls.Add(this.chkFuar);
             this.Controls.Add(this.chkGenel);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkFair);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpEnd);
@@ -221,9 +233,10 @@
         private System.Windows.Forms.DateTimePicker dtpEnd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkFair;
         private System.Windows.Forms.CheckBox chkGenel;
         private System.Windows.Forms.CheckBox chkFuar;
         private System.Windows.Forms.CheckBox chkVermez;
+        private System.Windows.Forms.Button btnAddress;
     }
 }

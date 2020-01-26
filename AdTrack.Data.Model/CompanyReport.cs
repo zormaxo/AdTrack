@@ -11,5 +11,7 @@ namespace AdTrack.Data.Model
         public string PageDesc { get; set; }
         public DateTime Date { get; set; }
         public string StatusName { get; set; }
+        public string AddressText { get; set; }
+        public string TownName { get; set; }
     }
 }

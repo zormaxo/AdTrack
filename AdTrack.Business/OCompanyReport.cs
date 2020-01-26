@@ -7,50 +7,97 @@ namespace AdTrack.Business
 {
     public class OCompanyReportGet : AdOperations
     {
-        private readonly DateTime Start;
-        private readonly DateTime End;
-        private readonly List<int> StatusList;
+        private readonly DateTime _start;
+        private readonly DateTime _end;
+        private readonly List<int> _statusList;
+        private readonly bool _fair;
 
-        public OCompanyReportGet(DateTime start, DateTime end, List<int> statusList)
+        public List<CompanyReport> List { get; set; }
+
+        public OCompanyReportGet(DateTime start, DateTime end, List<int> statusList, bool fair)
         {
-            Start = start;
-            End = end;
-            StatusList = statusList;
+            _fair = fair;
+            _start = start;
+            _end = end;
+            _statusList = statusList;
         }
-
-        public List<CompanyReport> List
-        { get; set; }
 
         protected override void DoJob()
         {
             CompanyReportRepository rep = new CompanyReportRepository(OpConn);
-            List = rep.GetList(Start, End, StatusList);
+            List<string> fairDates = OCompanyReportUtil.GetFairDateList();
+            List = rep.GetList(_start, _end, _statusList, _fair, fairDates);
         }
     }
 
     public class OCompanyDetailGet : AdOperations
     {
-        private readonly int companyId;
-        private readonly DateTime Start;
-        private readonly DateTime End;
-        private readonly List<int> StatusList;
-
-        public OCompanyDetailGet(int companyId, DateTime start, DateTime end, List<int> statusList)
-        {
-            this.companyId = companyId;
-            Start = start;
-            End = end;
-            StatusList = statusList;
-        }
+        private readonly int _companyId;
+        private readonly DateTime _start;
+        private readonly DateTime _end;
 
         public List<CompanyReport> List { get; set; }
         public List<CompanyReport> SumList { get; set; }
 
+        public OCompanyDetailGet(int companyId, DateTime start, DateTime end)
+        {
+            _companyId = companyId;
+            _start = start;
+            _end = end;
+        }
+
         protected override void DoJob()
         {
             CompanyReportRepository rep = new CompanyReportRepository(OpConn);
-            List = rep.GetCompanyDetailList(companyId, Start, End, StatusList);
-            SumList = rep.GetSumList(companyId, Start, End, StatusList);
+            List = rep.GetCompanyDetailList(_companyId, _start, _end);
+            SumList = rep.GetSumList(_companyId, _start, _end);
+        }
+    }
+
+    public class OCompanyAddressGet : AdOperations
+    {
+        private readonly DateTime _start;
+        private readonly DateTime _end;
+        private readonly List<int> _statusList;
+        private readonly bool _fair;
+        public List<CompanyReport> List { get; set; }
+
+        public OCompanyAddressGet(DateTime start, DateTime end, List<int> statusList, bool fair)
+        {
+            _fair = fair;
+            _start = start;
+            _end = end;
+            _statusList = statusList;
+        }
+
+        protected override void DoJob()
+        {
+            CompanyReportRepository rep = new CompanyReportRepository(OpConn);
+            List<string> fairDates = OCompanyReportUtil.GetFairDateList();
+            List = rep.GetAddress(_start, _end, _statusList, _fair, fairDates);
+        }
+    }
+
+    public static class OCompanyReportUtil
+    {
+        public static List<string> GetFairDateList()
+        {
+            List<string> fairDates = new List<string>();
+            fairDates.Add("2016-03-01");
+            fairDates.Add("2016-10-01");
+            fairDates.Add("2017-03-01");
+            fairDates.Add("2017-10-01");
+            fairDates.Add("2018-03-01");
+            fairDates.Add("2018-10-01");
+            fairDates.Add("2019-03-01");
+            fairDates.Add("2019-10-01");
+            fairDates.Add("2020-03-01");
+            fairDates.Add("2020-10-01");
+            fairDates.Add("2021-03-01");
+            fairDates.Add("2021-10-01");
+            fairDates.Add("2022-03-01");
+            fairDates.Add("2022-10-01");
+            return fairDates;
         }
     }
 }

@@ -14,13 +14,11 @@ namespace AdTrackForm.Report
 {
     public partial class CompanyReportForm : BsForm
     {
-        private List<CompanyReport> companyReportList;
-        private List<CompanyReport> companyDetaiList;
-        private List<CompanyReport> sumList;
-        private int selectedCompanyId;
-        private DateTime startDate;
-        private DateTime endDate;
-        private List<int> statusList;
+        private List<CompanyReport> _companyReportList;
+        private List<CompanyReport> _companyDetaiList;
+        private List<CompanyReport> _sumList;
+        private int _selectedCompanyId;
+        private List<int> _statusList;
 
         public CompanyReportForm()
         {
@@ -44,15 +42,15 @@ namespace AdTrackForm.Report
                 lvwDetails.Items.Clear();
                 return;
             }
-            selectedCompanyId = Convert.ToInt32(lvwCompany.SelectedItems[0].SubItems[4].Text);
+            _selectedCompanyId = Convert.ToInt32(lvwCompany.SelectedItems[0].SubItems[4].Text);
             FillDetailList();
         }
 
         private void TxtFilter_TextChanged(object sender, EventArgs e)
         {
             string pattern = txtFilter.Text.Trim();
-            List<CompanyReport> patternList = companyReportList.Where(a => a.CompanyName.ToLower().Contains(pattern.ToLower())).ToList();
-            PopulateCompanyList(patternList);
+            List<CompanyReport> patternList = _companyReportList.Where(a => a.CompanyName.ToLower().Contains(pattern.ToLower())).ToList();
+            WriteToList(patternList);
         }
 
         private void CompanyReportForm_Load(object sender, EventArgs e)
@@ -61,50 +59,56 @@ namespace AdTrackForm.Report
             GetFormReady();
         }
 
+        private void btnAddress_Click(object sender, EventArgs e)
+        {
+            bool fair = chkFair.Checked;
+            OCompanyAddressGet get = new OCompanyAddressGet(dtpStart.Value, dtpEnd.Value, _statusList, fair);
+            get.Execute();
+            Common.WriteDtToExcel(get.List, "Firma Adresleri", "CompanyName", "StatusName", "AddressText", "TownName", "AdCount");
+            BsMessageBox.ShowSuccess("Excel dosyası oluşturuldu.");
+        }
+
         #endregion Events
 
         private void GetFormReady()
         {
-            statusList = new List<int>();
             BsCommon.ClearControls(this);
-            lvwDetails.Items.Clear();
-            lvwSum.Items.Clear();
-            startDate = dtpStart.Value;
-            endDate = dtpEnd.Value;
-            PopulateStatusList();
-            FillCompanyList();
+            FillStatusList();
+            GetCompanyList();
         }
 
-        private void PopulateStatusList()
+        private void FillStatusList()
         {
+            _statusList = new List<int>();
             if (chkGenel.Checked)
-                statusList.Add(1);
+                _statusList.Add(1);
             if (chkFuar.Checked)
-                statusList.Add(2);
+                _statusList.Add(2);
             if (chkVermez.Checked)
-                statusList.Add(3);
+                _statusList.Add(3);
         }
 
-        private void FillCompanyList()
+        private void GetCompanyList()
         {
-            OCompanyReportGet get = new OCompanyReportGet(startDate, endDate, statusList);
+            bool fair = chkFair.Checked;
+            OCompanyReportGet get = new OCompanyReportGet(dtpStart.Value, dtpEnd.Value, _statusList, fair);
             get.Execute();
-            companyReportList = get.List;
-            PopulateCompanyList(companyReportList);
-            Common.WriteDtToExcel(companyReportList, "Firma Raporu", "CompanyName", "AdCount");
+            _companyReportList = get.List;
+            WriteToList(_companyReportList);
+            Common.WriteDtToExcel(_companyReportList, "Firma Raporu", "CompanyName", "AdCount");
         }
 
         private void FillDetailList()
         {
-            OCompanyDetailGet get = new OCompanyDetailGet(selectedCompanyId, startDate, endDate, statusList);
+            OCompanyDetailGet get = new OCompanyDetailGet(_selectedCompanyId, dtpStart.Value, dtpEnd.Value);
             get.Execute();
-            companyDetaiList = get.List;
-            sumList = get.SumList;
-            DataTable table1 = Common.ConvertToDatatable(companyDetaiList, "MagazineName", "Date", "PageDesc");
-            DataTable table2 = Common.ConvertToDatatable(sumList, "MagazineName", "AdCount");
+            _companyDetaiList = get.List;
+            _sumList = get.SumList;
+            DataTable table1 = Common.ConvertToDatatable(_companyDetaiList, "MagazineName", "Date", "PageDesc");
+            DataTable table2 = Common.ConvertToDatatable(_sumList, "MagazineName", "AdCount");
             Common.WriteDsToExcel("Detay Rapor", table1, table2);
-            PopulateDetailList(companyDetaiList);
-            PopulateSumList(sumList);
+            PopulateDetailList(_companyDetaiList);
+            PopulateSumList(_sumList);
         }
 
         private void PopulateDetailList(List<CompanyReport> list)
@@ -133,7 +137,7 @@ namespace AdTrackForm.Report
             lvwSum.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        private void PopulateCompanyList(List<CompanyReport> list)
+        private void WriteToList(List<CompanyReport> list)
         {
             lvwCompany.Items.Clear();
             for (int i = 0; i < list.Count; i++)
