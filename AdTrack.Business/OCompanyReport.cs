@@ -35,12 +35,14 @@ namespace AdTrack.Business
         private readonly int _companyId;
         private readonly DateTime _start;
         private readonly DateTime _end;
+        private readonly bool _fair;
 
         public List<CompanyReport> List { get; set; }
         public List<CompanyReport> SumList { get; set; }
 
-        public OCompanyDetailGet(int companyId, DateTime start, DateTime end)
+        public OCompanyDetailGet(int companyId, DateTime start, DateTime end, bool fair)
         {
+            _fair = fair;
             _companyId = companyId;
             _start = start;
             _end = end;
@@ -49,8 +51,9 @@ namespace AdTrack.Business
         protected override void DoJob()
         {
             CompanyReportRepository rep = new CompanyReportRepository(OpConn);
-            List = rep.GetCompanyDetailList(_companyId, _start, _end);
-            SumList = rep.GetSumList(_companyId, _start, _end);
+            List<string> fairDates = OCompanyReportUtil.GetFairDateList();
+            List = rep.GetCompanyDetailList(_companyId, _start, _end, _fair, fairDates);
+            SumList = rep.GetSumList(_companyId, _start, _end, _fair, fairDates);
         }
     }
 

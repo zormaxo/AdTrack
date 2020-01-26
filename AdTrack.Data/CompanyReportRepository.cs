@@ -47,37 +47,70 @@ namespace AdTrack.Data
             }
         }
 
-        public List<CompanyReport> GetCompanyDetailList(int companyId, DateTime start, DateTime end)
+        public List<CompanyReport> GetCompanyDetailList(int companyId, DateTime start, DateTime end, bool fair, List<string> fairDates)
         {
             string sdate = start.ToString("yyyy-MM-dd");
             string edate = end.ToString("yyyy-MM-dd");
+            string query;
+            if (fair)
+            {
+                query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
+                   " FROM Advertisement ad" +
+                   " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
+                   " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
+                   " JOIN Page pa ON pa.PageId = ad.PageId" +
+                   " WHERE ad.CompanyId = {0} " +
+                   " AND md.Date IN @fairDates" +
+                   " ORDER BY md.Date DESC", companyId);
 
-            string query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
-                    " FROM Advertisement ad" +
-                    " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
-                    " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
-                    " JOIN Page pa ON pa.PageId = ad.PageId" +
-                    " WHERE ad.CompanyId = {0} " +
-                    " AND md.Date BETWEEN '{1}' AND '{2}'" +
-                    " ORDER BY md.Date DESC", companyId, sdate, edate);
-
-            return BaseCnn.Query<CompanyReport>(query).AsList();
+                var parameters = new DynamicParameters();
+                parameters.Add("fairDates", fairDates);
+                return BaseCnn.Query<CompanyReport>(query, parameters).AsList();
+            }
+            else
+            {
+                query = string.Format("SELECT ma.MagazineName, md.Date, pa.PageDesc" +
+                   " FROM Advertisement ad" +
+                   " JOIN MagazineDate md ON ad.MagazineDateId = md.MagazineDateId" +
+                   " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
+                   " JOIN Page pa ON pa.PageId = ad.PageId" +
+                   " WHERE ad.CompanyId = {0} " +
+                   " AND md.Date BETWEEN '{1}' AND '{2}'" +
+                   " ORDER BY md.Date DESC", companyId, sdate, edate);
+                return BaseCnn.Query<CompanyReport>(query).AsList();
+            }
         }
 
-        public List<CompanyReport> GetSumList(int companyId, DateTime start, DateTime end)
+        public List<CompanyReport> GetSumList(int companyId, DateTime start, DateTime end, bool fair, List<string> fairDates)
         {
             string sdate = start.ToString("yyyy-MM-dd");
             string edate = end.ToString("yyyy-MM-dd");
+            string query;
+            if (fair)
+            {
+                query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
+                  " JOIN Advertisement ad ON md.MagazineDateId = ad.MagazineDateId" +
+                  " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
+                  " WHERE ad.CompanyId = {0}" +
+                  " AND md.Date IN @fairDates" +
+                  " GROUP BY ma.MagazineId" +
+                  " ORDER BY COUNT(*) DESC", companyId, sdate, edate);
 
-            string query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
-                   " JOIN Advertisement ad ON md.MagazineDateId = ad.MagazineDateId" +
-                   " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
-                   " WHERE ad.CompanyId = {0}" +
-                   " AND md.Date BETWEEN '{1}' AND '{2}'" +
-                   " GROUP BY ma.MagazineId" +
-                   " ORDER BY COUNT(*) DESC", companyId, sdate, edate);
-
-            return BaseCnn.Query<CompanyReport>(query).AsList();
+                var parameters = new DynamicParameters();
+                parameters.Add("fairDates", fairDates);
+                return BaseCnn.Query<CompanyReport>(query, parameters).AsList();
+            }
+            else
+            {
+                query = string.Format("SELECT ma.MagazineName, COUNT(*) AdCount FROM MagazineDate md" +
+                    " JOIN Advertisement ad ON md.MagazineDateId = ad.MagazineDateId" +
+                    " JOIN Magazine ma ON ma.MagazineId = md.MagazineId" +
+                    " WHERE ad.CompanyId = {0}" +
+                    " AND md.Date BETWEEN '{1}' AND '{2}'" +
+                    " GROUP BY ma.MagazineId" +
+                    " ORDER BY COUNT(*) DESC", companyId, sdate, edate);
+                return BaseCnn.Query<CompanyReport>(query).AsList();
+            }
         }
 
         public List<CompanyReport> GetAddress(DateTime start, DateTime end, List<int> statusList, bool fair, List<string> fairDates)

@@ -100,7 +100,8 @@ namespace AdTrackForm.Report
 
         private void FillDetailList()
         {
-            OCompanyDetailGet get = new OCompanyDetailGet(_selectedCompanyId, dtpStart.Value, dtpEnd.Value);
+            bool fair = chkFair.Checked;
+            OCompanyDetailGet get = new OCompanyDetailGet(_selectedCompanyId, dtpStart.Value, dtpEnd.Value, fair);
             get.Execute();
             _companyDetaiList = get.List;
             _sumList = get.SumList;
