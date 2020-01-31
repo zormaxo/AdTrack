@@ -34,7 +34,7 @@ namespace AdTrack.Business
 
             //Firma kayıt
             string query = string.Format("INSERT INTO Company (CompanyName, Status, Explanation) VALUES ('{0}',{1},'{2}');",
-                                         Obj.CompanyName, Obj.StatusId, Obj.Explanation);
+                                         Obj.NewCompanyName, Obj.StatusId, Obj.Explanation);
             BaseRepo.BsExecute(query);
             int companyId = (int)OpConn.LastInsertRowId;
 
@@ -103,7 +103,7 @@ namespace AdTrack.Business
                 return;
 
             List<Company> companyList = companyRepo.GetList();
-            if (companyList.Any(mag => mag.CompanyName == obj.CompanyName))
+            if (companyList.Any(mag => mag.CompanyName == obj.NewCompanyName))
                 throw new BsException("Zaten mevcut kayıt", OpType.UserError);
         }
 

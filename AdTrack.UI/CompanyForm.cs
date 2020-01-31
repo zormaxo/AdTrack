@@ -254,7 +254,7 @@ namespace AdTrackForm
             Company obj = new Company
             {
                 CompanyId = _selectedItem == null ? 0 : _selectedItem.CompanyId,
-                CompanyName = _selectedItem.CompanyName,
+                CompanyName = _selectedItem == null ? txtCoName.Text.Trim() : _selectedItem.CompanyName,
                 NewCompanyName = txtCoName.Text.Trim(),
                 StatusId = cmbStatus.SelectedIndex == 0 ? 1 : cmbStatus.SelectedIndex,
                 Explanation = txtExp.Text,
