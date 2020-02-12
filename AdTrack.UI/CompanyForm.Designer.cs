@@ -71,9 +71,8 @@
             // 
             // lvwCompany
             // 
-            this.lvwCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvwCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lvwCompany.HideSelection = false;
             this.lvwCompany.Location = new System.Drawing.Point(12, 115);
             this.lvwCompany.Name = "lvwCompany";
@@ -116,6 +115,8 @@
             // 
             // txtExp
             // 
+            this.txtExp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtExp.Location = new System.Drawing.Point(426, 118);
             this.txtExp.Multiline = true;
             this.txtExp.Name = "txtExp";
@@ -124,6 +125,8 @@
             // 
             // txtAddress1
             // 
+            this.txtAddress1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress1.Location = new System.Drawing.Point(8, 19);
             this.txtAddress1.Multiline = true;
             this.txtAddress1.Name = "txtAddress1";
@@ -132,6 +135,8 @@
             // 
             // txtAddress2
             // 
+            this.txtAddress2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress2.Location = new System.Drawing.Point(8, 19);
             this.txtAddress2.Multiline = true;
             this.txtAddress2.Name = "txtAddress2";
@@ -140,6 +145,8 @@
             // 
             // txtAddress3
             // 
+            this.txtAddress3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress3.Location = new System.Drawing.Point(6, 19);
             this.txtAddress3.Multiline = true;
             this.txtAddress3.Name = "txtAddress3";
@@ -208,6 +215,7 @@
             // 
             // rdoK1
             // 
+            this.rdoK1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoK1.AutoSize = true;
             this.rdoK1.Location = new System.Drawing.Point(480, 20);
             this.rdoK1.Name = "rdoK1";
@@ -219,6 +227,7 @@
             // 
             // rdoV1
             // 
+            this.rdoV1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoV1.AutoSize = true;
             this.rdoV1.Location = new System.Drawing.Point(480, 43);
             this.rdoV1.Name = "rdoV1";
@@ -230,6 +239,7 @@
             // 
             // rdoD1
             // 
+            this.rdoD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoD1.AutoSize = true;
             this.rdoD1.Checked = true;
             this.rdoD1.Location = new System.Drawing.Point(480, 66);
@@ -242,6 +252,7 @@
             // 
             // rdoD2
             // 
+            this.rdoD2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoD2.AutoSize = true;
             this.rdoD2.Checked = true;
             this.rdoD2.Location = new System.Drawing.Point(482, 67);
@@ -254,6 +265,7 @@
             // 
             // rdoV2
             // 
+            this.rdoV2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoV2.AutoSize = true;
             this.rdoV2.Location = new System.Drawing.Point(482, 44);
             this.rdoV2.Name = "rdoV2";
@@ -265,6 +277,7 @@
             // 
             // rdoK2
             // 
+            this.rdoK2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoK2.AutoSize = true;
             this.rdoK2.Location = new System.Drawing.Point(482, 21);
             this.rdoK2.Name = "rdoK2";
@@ -276,6 +289,7 @@
             // 
             // rdoD3
             // 
+            this.rdoD3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoD3.AutoSize = true;
             this.rdoD3.Checked = true;
             this.rdoD3.Location = new System.Drawing.Point(480, 65);
@@ -288,6 +302,7 @@
             // 
             // rdoV3
             // 
+            this.rdoV3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoV3.AutoSize = true;
             this.rdoV3.Location = new System.Drawing.Point(480, 42);
             this.rdoV3.Name = "rdoV3";
@@ -299,6 +314,7 @@
             // 
             // rdoK3
             // 
+            this.rdoK3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoK3.AutoSize = true;
             this.rdoK3.Location = new System.Drawing.Point(480, 19);
             this.rdoK3.Name = "rdoK3";
@@ -310,6 +326,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtAddress3);
             this.groupBox1.Controls.Add(this.rdoD3);
             this.groupBox1.Controls.Add(this.rdoV3);
@@ -323,6 +341,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.txtAddress2);
             this.groupBox2.Controls.Add(this.rdoK2);
             this.groupBox2.Controls.Add(this.rdoD2);
@@ -336,6 +356,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.rdoK1);
             this.groupBox3.Controls.Add(this.rdoV1);
             this.groupBox3.Controls.Add(this.rdoD1);

@@ -258,9 +258,9 @@ namespace AdTrackForm
                 NewCompanyName = txtCoName.Text.Trim(),
                 StatusId = cmbStatus.SelectedIndex == 0 ? 1 : cmbStatus.SelectedIndex,
                 Explanation = txtExp.Text,
-                Address1 = new Address { AddressText = txtAddress1.Text },
-                Address2 = new Address { AddressText = txtAddress2.Text },
-                Address3 = new Address { AddressText = txtAddress3.Text },
+                Address1 = new Address { AddressText = txtAddress1.Text.Replace(Environment.NewLine, " ") },
+                Address2 = new Address { AddressText = txtAddress2.Text.Replace(Environment.NewLine, " ") },
+                Address3 = new Address { AddressText = txtAddress3.Text.Replace(Environment.NewLine, " ") },
                 Telephone1 = txtTel1.Text,
                 Telephone2 = txtTel2.Text,
                 Telephone3 = txtTel3.Text
