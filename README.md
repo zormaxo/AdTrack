@@ -1,0 +1,1 @@
+Advertisement Track is a simple WinForms application. It waits for user inputs and then organizes and categorizes the input data and generates reports.  

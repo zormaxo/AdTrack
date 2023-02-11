@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdTrack.Data", "AdTrack.Data\AdTrack.Data.csproj", "{07DCC2B6-3EC2-427D-BAF5-2E4D1B1E8792}"
 EndProject
@@ -18,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdTrack.UI", "AdTrack.UI\AdTrack.UI.csproj", "{8B7A2BF0-6446-4DE0-B111-3FB680ECA201}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdTrack.Util", "AdTrack.Util\AdTrack.Util.csproj", "{9C8E9C78-CA01-490C-89A3-B3F035DA1801}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{195FE4FE-2615-490F-9C57-074F0694A8DF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
