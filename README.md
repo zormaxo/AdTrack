@@ -1,1 +1,1 @@
-Advertisement Track is a simple WinForms application. It waits for user inputs and then organizes and categorizes the input data and generates reports.  
+Advertisement Track is a simple WinForms application. It waits for user inputs and then organizes and categorizes the input data and generates reports. Advertisement Track provides users with a simple yet powerful tool to better organize their data and make more informed decisions about advertising.
